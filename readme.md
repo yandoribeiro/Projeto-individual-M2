@@ -18,8 +18,12 @@
 
 ## <a name="c1"></a>1. Introdução (Semana 01)
 
-*Preencha com até 300 palavras – sem necessidade de fonte.*
-*Descreva brevemente o sistema que você irá desenvolver.*
+  Na era digital, a crescente demanda por produtividade tem tornado a gestão de tarefas um desafio constante. Muitas pessoas enfrentam dificuldades para organizar suas atividades acadêmicas e profissionais, resultando em perda de eficiência e aumento do estresse. Diante desse cenário, este projeto propõe o desenvolvimento de um sistema web de gerenciamento de tarefas, visando auxiliar usuários a melhorar sua organização e desempenho.
+  
+  O sistema oferecerá funcionalidades essenciais como criação e categorização de tarefas, definição de prazos e prioridades, além de acompanhamento visual do progresso. Técnicamente, será implementado com um banco de dados relacional para armazenamento seguro das informações, uma API  para integração entre frontend e backend, e uma interface intuitiva desenvolvida com foco na experiência do usuário.
+  
+  Como projeto acadêmico, esta solução aplica conceitos fundamentais de computação e design abordados no curso. O público-alvo principal inclui estudantes e profissionais que necessitam de uma ferramenta simples porém eficaz para gerenciar suas rotinas. Ao centralizar e automatizar a organização de tarefas, o sistema permitirá que os usuários alcancem maior produtividade com menor esforço organizacional.
+
 
 ---
 
@@ -27,11 +31,59 @@
 
 ### 2.1. Personas (Semana 01)
 
-*Posicione aqui sua(s) Persona(s) em forma de texto markdown com imagens, ou como imagem de template preenchido. Atualize esta seção ao longo do módulo se necessário.*
+<img height=500px src="https://github.com/user-attachments/assets/9e2f9b5d-b17c-4cd8-b15b-817f6bae1b27">
+
+
+**Nome:** Pedro
+
+**Idade:** 18 anos
+
+**Sexo:** Masculino
+
+**Locação:** Guaratinguetá
+
+**Ocupação:** Estudante
+
+**Sobre:** Pedro é um jovem que recentemente começou a cursar Engenharia Mecânica na UNESP. Por causa da faculdade, ele passou a morar sozinho em outra cidade e tem dificuldade para cuidar da casa, o que, somado às obrigações como estudante, tem deixado sua rotina muito desorganizada e estressante. Além disso, ele se sente perdido sobre como organizar suas tarefas, e muitas vezes enfrenta problemas com prazos. Assim, tudo isso vem o deixando muito sobrecarregado, o que diminui sua produtividade e consequentemente gera mais acúmulo de tarefas.
+
+**Dores:** 
+Falta de um espaço para anotar suas tarefas;
+Dificuldade em organizar prioridades;
+Problema para mapear prazos.
+
+
+**Solução:**
+Tarefas anotadas e organizadas;
+Prioridades definidas com base no prazo de entrega;
+Interface intuitiva que melhora a visualização de tarefas.
+
+**Frase:**
+“Me sinto muito sobrecarregado com minhas tarefas, sinto que não vou dar conta da faculdade.”
+
 
 ### 2.2. User Stories (Semana 01)
 
-*Posicione aqui a lista de User Stories levantadas para o projeto. Siga o template de User Stories e utilize a referência USXX para numeração (US01, US02, US03, ...). Indique todas as User Stories mapeadas, mesmo aquelas que não forem implementadas ao longo do projeto. Não se esqueça de explicar o INVEST de 1 User Storie prioritária.*
+**US01 -** “ Eu, como estudante universitário, sinto falta de um lugar para armazenar minhas tarefas.”
+
+**US02 -** “Eu, como estudante universitário, não consigo organizar a prioridade de minhas tarefas.”
+
+**US03 -** “Eu, como estudante universitário, preciso de um local para visualizar minhas tarefas.”
+
+## Método INVEST: US03 ## 
+
+**Independente:** A visualização das informações do produto não depende das informações contidas nele.
+
+**Negociável:** Uma interface esteticamente agradável pode tomar muitas formas, não há um padrão a ser seguido, contanto que o sistema mostre o necessário.
+
+**Valiosa:** Por ser um sistema que organiza tarefas, sabe-se que a visualização das tarefas é o ponto mais importante do projeto.
+
+**Estimável:** É possível estimar o esforço e os recursos gastos para criar um produto que supra a necessidade descrita.
+
+**Sob medida:** A história é bem sucinta ao descrever a demanda, tornando a tarefa direta e clara.
+
+**Testável:** A história é clara em sua necessidade, o que facilita o testa, já que se sabe exatamente qual a questão tratada.
+
+
 
 ---
 
