@@ -1,0 +1,28 @@
+{
+  "name": "projeto-individual-m2",
+  "version": "1.0.0",
+  "description": "**_Os trechos em itálico servem apenas como guia para o preenchimento da seção. Por esse motivo, não devem fazer parte da documentação final._**",
+  "main": "jest.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yandoribeiro/Projeto-individual-M2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yandoribeiro/Projeto-individual-M2/issues"
+  },
+  "homepage": "https://github.com/yandoribeiro/Projeto-individual-M2#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0"
+  }
+}
