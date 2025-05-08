@@ -1,10 +1,8 @@
 # Web Application Document - Projeto Individual - Módulo 2 - Inteli
 
-**_Os trechos em itálico servem apenas como guia para o preenchimento da seção. Por esse motivo, não devem fazer parte da documentação final._**
-
 ## Nome do Projeto
 
-#### Autor do projeto
+#### Yan de Oliveira Ribeiro
 
 ## Sumário
 
@@ -16,7 +14,7 @@
 
 <br>
 
-## <a name="c1"></a>1. Introdução (Semana 01)
+## <a name="c1"></a>1. Introdução
 
   Na era digital, a crescente demanda por produtividade tem tornado a gestão de tarefas um desafio constante. Muitas pessoas enfrentam dificuldades para organizar suas atividades acadêmicas e profissionais, resultando em perda de eficiência e aumento do estresse. Diante desse cenário, este projeto propõe o desenvolvimento de um sistema web de gerenciamento de tarefas, visando auxiliar usuários a melhorar sua organização e desempenho.
   
@@ -29,7 +27,7 @@
 
 ## <a name="c2"></a>2. Visão Geral da Aplicação Web
 
-### 2.1. Personas (Semana 01)
+### 2.1. Personas
 
 <img height=500px src="https://github.com/user-attachments/assets/9e2f9b5d-b17c-4cd8-b15b-817f6bae1b27">
 
@@ -61,7 +59,7 @@ Interface intuitiva que melhora a visualização de tarefas.
 “Me sinto muito sobrecarregado com minhas tarefas, sinto que não vou dar conta da faculdade.”
 
 
-### 2.2. User Stories (Semana 01)
+### 2.2. User Stories
 
 **US01 -** “ Eu, como estudante universitário, sinto falta de um lugar para armazenar minhas tarefas.”
 
@@ -91,9 +89,63 @@ Interface intuitiva que melhora a visualização de tarefas.
 
 ### 3.1. Modelagem do banco de dados  (Semana 3)
 
-*Posicione aqui os diagramas de modelos relacionais do seu banco de dados, apresentando todos os esquemas de tabelas e suas relações. Utilize texto para complementar suas explicações, se necessário.*
+#### Modelo Relacional:
 
-*Posicione também o modelo físico com o Schema do BD (arquivo .sql)*
+![Captura de tela 2025-05-08 195459](https://github.com/user-attachments/assets/03bb6398-19f9-4fdf-a7a4-2677bbeb78aa)
+
+Como o objetivo do sistema é gerenciar e organizar tarefas de forma adaptável, foram criadas quatro tabelas:
+
+- users: Contém as informações dos usuários, como nome e e-mail;
+
+- tasks: Armazena as taks criadas pelos usuários utilizando informações como título, descrição, data limite, prioridade, status, data em que foi criada e data da última atualização;
+
+- categories: Organiza as tabelas por temas ou grupos definidos pelos usuários por meio do nome da categoria, data que foi criada e id estrangeiro para determinar quem criou a categoria;
+
+- tasks_categories: Faz a ligação entre tarefas e categorias, permitindo que uma tarefa pertença a várias categorias (relação muitos-para-muitos).
+
+#### Modelo Físico:
+
+```
+CREATE TYPE task_priority AS ENUM ('low', 'medium', 'high');
+CREATE TYPE task_status AS ENUM ('pending', 'completed', 'canceled');
+
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR NOT NULL,
+  email VARCHAR NOT NULL UNIQUE
+);
+
+CREATE TABLE tasks (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL,
+  title VARCHAR NOT NULL,
+  description TEXT NOT NULL,
+  due_date TIMESTAMP,
+  priority task_priority DEFAULT 'medium',
+  status task_status DEFAULT 'pending',
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP
+);
+
+CREATE TABLE categories (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR NOT NULL UNIQUE,
+  user_id INTEGER NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE task_categories (
+  task_id INTEGER NOT NULL,
+  category_id INTEGER NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW(),
+  PRIMARY KEY (task_id, category_id)
+);
+
+ALTER TABLE tasks ADD CONSTRAINT fk_tasks_user FOREIGN KEY (user_id) REFERENCES users(id);
+ALTER TABLE categories ADD CONSTRAINT fk_categories_user FOREIGN KEY (user_id) REFERENCES users(id);
+ALTER TABLE task_categories ADD CONSTRAINT fk_task_categories_task FOREIGN KEY (task_id) REFERENCES tasks(id);
+ALTER TABLE task_categories ADD CONSTRAINT fk_task_categories_category FOREIGN KEY (category_id) REFERENCES categories(id);
+```
 
 ### 3.1.1 BD e Models (Semana 5)
 *Descreva aqui os Models implementados no sistema web*
