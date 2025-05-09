@@ -1,6 +1,6 @@
 <h1>📋 Gerenciador de Tarefas</h1>
 
-  <p>O projeto consiste em um sistema simples de gerenciamento de tarefas desenvolvido com JavaScript no frontend, Node.js no backend e banco de dados PostgreSQL via Supabase.</p>
+  <p>O projeto consiste em um sistema de gerenciamento de tarefas desenvolvido com JavaScript no frontend, Node.js no backend e banco de dados PostgreSQL via Supabase.</p>
 
   <h2>🚀 Funcionalidades</h2>
   <ul>
@@ -37,7 +37,8 @@ gerenciador-de-tarefas/
 ├── services/            # Lógica de serviços (ex: comunicação com APIs)
 ├── tests/               # Testes automatizados
 ├── views/               # Templates da interface do usuário
-├── .env                 # Variáveis de ambiente
+├── .env.example         # Variáveis de ambiente
+├── app.js               # Inicializa o servidor e gerencia rotas
 ├── .gitignore           # Arquivos e pastas ignorados pelo Git
 ├── jest.config.js       # Configuração do Jest para testes
 ├── package-lock.json    # Lockfile do npm
@@ -55,39 +56,39 @@ gerenciador-de-tarefas/
 
 1. **Clone o repositório**:
    ```bash
-   git clone https://github.com/guihassen/gerenciador-de-tarefas
+   git clone https://github.com/yandoribeiro/Projeto-individual-M2
    cd gerenciador-de-tarefas
 
-2. **Instale as dependências: Certifique-se de que você tem o Node.js instalado. Em seguida, execute:**
-```bash
-npm install
-```
+3. **Instale as dependências: Certifique-se de que você tem o Node.js instalado. Em seguida, execute:**
+  ```bash
+  npm install
+  ```
 
 3. **Configure as variáveis de ambiente: Crie um arquivo .env na raiz do projeto (se ainda não existir) e configure as variáveis de ambiente , com os dados da seu banco de dados no supabase,conforme o exemplo abaixo:**
-```bash
-DB_USER= "seu_usuario"
-DB_HOST= "seu_host"
-DB_DATABASE= "seu_banco"
-DB_PASSWORD= "sua_senha"
-DB_PORT= "sua_porta"
-DB_SSL= "true"
-PORT= 3000
-```
+  ```bash
+  DB_USER= "seu_usuario"
+  DB_HOST= "seu_host"
+  DB_DATABASE= "seu_banco"
+  DB_PASSWORD= "sua_senha"
+  DB_PORT= "sua_porta"
+  DB_SSL= "true"
+  PORT= 3000
+  ```
 
 4. **Execute o script de inicialização do banco de dados: Certifique-se de que o banco de dados PostgreSQL está configurado e rodando. Depois, execute o script SQL para criar as tabelas:**
-```bash
-node scripts/runSQLScript.js
-``` 
+  ```bash
+  node scripts/runSQLScript.js
+  ``` 
 5. **Inicie o servidor: Execute o comando abaixo para iniciar o servidor:**
-```bash
-npm start
-```
+  ```bash
+  npm start
+  ```
 6.**Acesse a aplicação: Abra o navegador e acesse:**
-```bash
-http://localhost:3000
-``` 
+  ```bash
+  http://localhost:3000
+  ``` 
 
 7.**Testes (opcional): Para rodar os testes, execute:**
-```bash
-npm test
-```
+  ```bash
+  npm test
+  ```
