@@ -163,7 +163,14 @@ ALTER TABLE task_categories ADD CONSTRAINT fk_task_categories_category FOREIGN K
 
 ### 3.3. Wireframes (Semana 03)
 
-*Posicione aqui as imagens do wireframe construído para sua solução e, opcionalmente, o link para acesso (mantenha o link sempre público para visualização).*
+![Wireframe-Home](https://github.com/user-attachments/assets/6f26ae68-403c-4176-9b8b-e29de3c9fe39)
+
+O wireframe da tela principal do site (início), foi pensada, com base na US03, para mostrar ao usuário as informações mais importantes do site de uma vez, permitindo que ele tenha uma clara visualização de seus deveres e progresso por meio de uma coluna que contém suas tarefas pendentes e um gráfico que mostra sua quantidade de tarefas dia após dia. Com isso, o usuário poderá acessar informações vitais rapidamente, ou optar por uma visualização mais detalhada selecionando uma das opções encontradas à esquerda do site: tarefas, categorias e relatórios. 
+
+![Wireframe-Categorias](https://github.com/user-attachments/assets/a091d752-c244-4b02-80b0-608f2cf2f08f)
+
+Esse é o wireframe da aba categorias, que foi baseada na US01 para ser desenvolvido. Nessa tela, o usuário pode acessar suas categorias e conectar suas taks a elas. O intuido dessa tela é facilitar a organização e anotação das tarefas, de modo que o usuário poderá organizar melhor suas tarefas, encontrà-las de forma mais fácil e até mesmo vizualizar melhor quais serão suas prioridades. 
+
 
 ### 3.4. Guia de estilos (Semana 05)
 
