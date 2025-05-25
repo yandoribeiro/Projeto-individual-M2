@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Criar Nova Categoria</title>
+</head>
+<body>
+  <h1>Criar Nova Categoria</h1>
+
+  <form action="/categories" method="POST">
+    <label for="name">Nome da categoria:</label>
+    <input type="text" id="name" name="name" required>
+
+    <!-- user_id fixo e oculto -->
+    <input type="hidden" name="user_id" value="1">
+
+    <button type="submit">Criar</button>
+  </form>
+
+  <br>
+  <a href="/categories">Voltar para lista</a>
+</body>
+</html>

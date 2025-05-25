@@ -7,8 +7,8 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "dev": "node server.js",
+    "init-db": "node migrations/migrate.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,12 @@
   },
   "homepage": "https://github.com/yandoribeiro/Projeto-individual-M2#readme",
   "dependencies": {
+    "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "method-override": "^3.0.0",
+    "node-fetch": "^3.3.2",
+    "nodemon": "^3.1.10",
+    "pg": "^8.16.0"
   }
 }

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Categoria</title>
+</head>
+<body>
+  <h1>Editar Categoria</h1>
+
+  <form action="/categories/<%= category.id %>?_method=PUT" method="POST">
+    <label for="name">Nome:</label>
+    <input type="text" id="name" name="name" value="<%= category.name %>" required>
+    
+    <button type="submit">Salvar Alterações</button>
+  </form>
+
+  <br>
+  <a href="/categories">Voltar para Categorias</a>
+</body>
+</html>

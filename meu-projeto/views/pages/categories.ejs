@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista de Categorias</title>
+</head>
+<body>
+  <h1>Lista de Categorias</h1>
+
+  <a href="/categories/new">Criar nova categoria</a>
+
+  <ul>
+    <% if (categories.length === 0) { %>
+      <li>Nenhuma categoria encontrada.</li>
+    <% } else { %>
+      <% categories.forEach(category => { %>
+        <li>
+          <strong><%= category.name %></strong>
+          - <a href="/categories/edit/<%= category.id %>">Editar</a>
+          <form action="/api/categories/<%= category.id %>?_method=DELETE" method="POST" style="display:inline;">
+            <button type="submit">Excluir</button>
+          </form>
+
+          <% if (category.tasks.length > 0) { %>
+            <ul>
+              <% category.tasks.forEach(task => { %>
+                <li>
+                  <%= task.title %>
+                  - <a href="/tasks/edit/<%= task.id %>">Editar tarefa</a>
+                </li>
+              <% }) %>
+            </ul>
+          <% } else { %>
+            <p><em>Nenhuma tarefa nesta categoria.</em></p>
+          <% } %>
+        </li>
+      <% }) %>
+    <% } %>
+  </ul>
+
+  <br>
+  <a href="/">Voltar para o início</a>
+</body>
+</html>

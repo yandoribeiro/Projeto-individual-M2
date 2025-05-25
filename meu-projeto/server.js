@@ -1,15 +1,30 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const path = require('path');
+const methodOverride = require('method-override');
+
+const routes = require('./routes');
+const frontRoutes = require('./routes/front');
+
 const app = express();
-const routes = require('./routes'); // importa seu index.js da pasta routes
+const port = process.env.PORT || 3000;
 
-app.use('/api', routes); // todas as rotas começam com /api
+// Middlewares
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 
-// Rota direta para "/"
-app.get('/', (req, res) => {
-  res.send('Está funcionando!');
-});
+// Configuração do EJS
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+// Rotas
+app.use('/api', routes);
+app.use('/', frontRoutes);
+
+// Inicializa o servidor
+app.listen(port, () => {
+  console.log(`Servidor rodando na porta ${port}`);
 });
