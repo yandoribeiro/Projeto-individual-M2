@@ -147,19 +147,45 @@ ALTER TABLE task_categories ADD CONSTRAINT fk_task_categories_task FOREIGN KEY (
 ALTER TABLE task_categories ADD CONSTRAINT fk_task_categories_category FOREIGN KEY (category_id) REFERENCES categories(id);
 ```
 
-### 3.1.1 BD e Models (Semana 5)
-*Descreva aqui os Models implementados no sistema web*
+### 3.1.1 BD e Models
+
+No sistema web desenvolvido com base na arquitetura MVC (Model-View-Controller), a camada Model representa a estrutura e o relacionamento dos dados com o banco de dados. Abaixo estão descritos os models que compõem o sistema:
+
+#### Usuários (users)
+O model users representa os usuários que acessam o sistema para gerenciar e visualizar suas tarefas. Contém os seguintes atributos:
+- id - identificador do usuário
+- username - nome do usuário
+
+#### Tarefas (tasks)
+O model tasks representa as atividades atribuídas aos usuários, como lições de casa, afazeres domésticos, lembretes ou projetos. Contém os seguintes atributos:
+- id - identificador da tarefa
+- title - título da tarefa
+- description - descrição da atividade
+- due_date - prazo da tarefa
+- priority - prioridade da atividade (alta, média ou baixa)
+- status - situação da tarefa (pendente ou concluída)
+- created_at - data de criação da tarefa
+- updated_at - data de atualização da tarefa (se houver)
+- user_id - chave estrangeira para os usuários
+
+#### Categorias (categories)
+O model categories permite a classificação das tarefas por temas criados pelo usuário. Contém os seguintes atributos:
+- id - identificador da categoria
+- name - nome da categoria
+- created_at - data de criação da categoria
+- user_id - chave estrangeira para os usuários
+
+#### Relação tarefas-categorias (task_categories)
+Esse model implementa a relação muitos-para-muitos entre tarefas e categorias. Ele permite que uma tarefa seja classificada em mais de uma categoria e que uma categoria agrupe várias tarefas. Contém os seguintes atributos:
+- task_id - chave estrangeira para a tarefa
+- category_id - chave estrangeira para a categoria
+- created_at - data de criação da relação
+
 
 ### 3.2. Arquitetura (Semana 5)
+O diagrama de arquitetura abaixo mostra como os dados fluem pelo sistema, tornando mais fácil a compreensão da lógica por trás dele.
+![image](https://github.com/user-attachments/assets/b28c45f6-1e86-45e3-b7f4-341703d925c8)
 
-*Posicione aqui o diagrama de arquitetura da sua solução de aplicação web. Atualize sempre que necessário.*
-
-**Instruções para criação do diagrama de arquitetura**  
-- **Model**: A camada que lida com a lógica de negócios e interage com o banco de dados.
-- **View**: A camada responsável pela interface de usuário.
-- **Controller**: A camada que recebe as requisições, processa as ações e atualiza o modelo e a visualização.
-  
-*Adicione as setas e explicações sobre como os dados fluem entre o Model, Controller e View.*
 
 ### 3.3. Wireframes (Semana 03)
 
@@ -183,7 +209,8 @@ Esse é o wireframe da aba categorias, que foi baseada na US01 para ser desenvol
 
 ### 3.6. WebAPI e endpoints (Semana 05)
 
-*Utilize um link para outra página de documentação contendo a descrição completa de cada endpoint. Ou descreva aqui cada endpoint criado para seu sistema.*  
+Segue o link para um documento contendo a explicação dos endpoints relacionados ao projeto:
+https://docs.google.com/document/d/1Qh0XPUv6BALtVt9tQLXQG64ORV6hQG3RD-lf3Uwdweo/edit?usp=sharing
 
 ### 3.7 Interface e Navegação (Semana 07)
 
