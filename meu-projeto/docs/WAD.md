@@ -214,7 +214,24 @@ https://docs.google.com/document/d/1Qh0XPUv6BALtVt9tQLXQG64ORV6hQG3RD-lf3Uwdweo/
 
 ### 3.7 Interface e Navegação (Semana 07)
 
-*Descreva e ilustre aqui o desenvolvimento do frontend do sistema web, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar.*
+Para desenvolver o frontend do projeto, foram utilizados arquivos .ejs e .css para estilizar o sistema e permitir sua interação com o usuário. Ao final do desenvolvimento, a aplicação contém 4 páginas principais:
+
+![image](https://github.com/user-attachments/assets/a1497448-36a0-4f8f-b36f-f7dee09366b4)
+Essa é a tela de login do site, onde o usuário deve inserir seu nome de usuário e senha ou criar uma conta caso não tenha. Ela é essencial para o sistema pois o usuário pode acessar apenas suas tarefas e categorias.
+
+![image](https://github.com/user-attachments/assets/925cf817-f091-41a4-acca-14813098933b)
+![image](https://github.com/user-attachments/assets/d72ee133-0a7d-440c-a078-4d1dec6e15cb)
+Essa imagem é referente à página de início do site, nela o usuário pode acessar suas tarefas de forma rápida e navegar entre as outras páginas para realizar alterações ou adicionar tarefas e categorias.
+
+![image](https://github.com/user-attachments/assets/41f40275-d622-41e9-a7e3-c16e47ce9c18)
+A página de tarefas permite que o usuário apague , crie ou edite suas tarefas, as duas últimas são feitas por meio do seguinte modelo:
+![image](https://github.com/user-attachments/assets/ca2b1666-b519-4cff-8928-2fa7d07f09e4)
+Um detalhe importante é que nessa página o usuário consegue clicar no botão "concluir" que altera o status da tarefa e "risca" ela, como pode ser visto na tarefa "limpar a estante".
+
+![image](https://github.com/user-attachments/assets/307bfd33-d624-49ac-9831-83cbbec08263)
+Por fim, a página de categorias mostra as categorias do usuário, as tarefas atreladas a ela e permite alterar, criar ou excluí-las. Para adicionar ou editar uma categoria, o sistema faz uso do seguinte formulário:
+![image](https://github.com/user-attachments/assets/31e7cdad-d47e-440d-9cf9-c477919691c1)
+Nele o usuário deve criar o nome da categoria e adicionar uma cor a ela, de modo a facilitar sua diferenciação. Além disso, é possível ver algumas dicas para a criação de categorias, que incentivam o usuário a fazer uso do sistema e organziar melhor suas tarefas. 
 
 ---
 
