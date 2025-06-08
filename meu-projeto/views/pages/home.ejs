@@ -6,7 +6,6 @@
   </div>
   <p>Organize suas tarefas e categorias em um só lugar.</p>
   
-  <!-- Adicionar resumo de estatísticas -->
   <div class="dashboard-summary">
     <div class="summary-card">
       <div class="summary-number"><%= stats.totalTasks %></div>
@@ -41,7 +40,6 @@
         <div class="task-card" data-priority="<%= task.priority %>" data-status="<%= task.status %>" data-id="<%= task.id %>">
           <div class="task-header">
             <h3 class="task-title"><%= task.title %></h3>
-            <!-- Removido botão de edição -->
           </div>
           
           <div class="task-content">
@@ -75,8 +73,6 @@
               <i class="far fa-calendar-alt"></i>
               <%= task.due_date ? new Date(task.due_date).toLocaleDateString() : 'Sem prazo' %>
             </div>
-            
-            <!-- Removido botão de concluir -->
           </div>
         </div>
       <% }); %>
@@ -111,7 +107,6 @@
         </div>
       <% }); %>
     </div>
-    <!-- Botão "Gerenciar categorias" removido -->
   <% } else { %>
     <div class="alert alert-info">
       <p>Você ainda não tem categorias. <a href="/categories/new">Criar uma nova categoria</a></p>
@@ -120,14 +115,11 @@
 </div>
 
 <script>
-  // Tornar os cards de tarefas clicáveis
   document.querySelectorAll('.home-dashboard .task-card').forEach(card => {
     const taskId = card.getAttribute('data-id');
     card.addEventListener('click', function(e) {
-      // Não redirecionar se o clique foi em um botão ou link
       if (e.target.closest('a, button, form')) return;
       
-      // Redirecionar para a página de detalhes da tarefa
       window.location.href = `/tasks/edit/${taskId}`;
     });
   });
