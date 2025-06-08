@@ -1,7 +1,8 @@
 -- Tabela users
 CREATE TABLE IF NOT EXISTS users (
   id SERIAL PRIMARY KEY,
-  username VARCHAR NOT NULL
+  username VARCHAR NOT NULL,
+  password VARCHAR
 );
 
 -- Tabela tasks
@@ -28,12 +29,14 @@ CREATE TABLE IF NOT EXISTS categories (
   id SERIAL PRIMARY KEY,
   name VARCHAR NOT NULL UNIQUE,
   user_id INTEGER NOT NULL,
+  color VARCHAR(7),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 COMMENT ON COLUMN categories.name IS 'Nome da categoria (único)';
 COMMENT ON COLUMN categories.user_id IS 'Dono da categoria (opcional, se for personalizada por usuário)';
+COMMENT ON COLUMN categories.color IS 'Cor da categoria em formato hexadecimal (ex: #4361ee)';
 
 -- Tabela task_categories (tabela de junção)
 CREATE TABLE IF NOT EXISTS task_categories (

@@ -1,40 +1,59 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Editar Tarefa</title>
-</head>
-<body>
-  <h1>Editar Tarefa</h1>
+<%- include('../partials/header', { active: 'tasks' }) %>
 
+<div class="card">
+  <div class="card-header">
+    <h2 class="card-title">Editar Tarefa</h2>
+  </div>
+  
   <form action="/tasks/<%= task.id %>?_method=PUT" method="POST">
-    <label for="title">Título:</label>
-    <input type="text" id="title" name="title" value="<%= task.title %>" required><br>
-
-    <label for="description">Descrição:</label>
-    <textarea id="description" name="description"><%= task.description %></textarea><br>
-
-    <label for="due_date">Data de entrega:</label>
-    <input type="date" id="due_date" name="due_date" value="<%= task.due_date ? task.due_date.toISOString().substring(0, 10) : '' %>"><br>
-
-    <label for="priority">Prioridade:</label>
-    <select id="priority" name="priority">
-      <option value="low" <%= task.priority === 'low' ? 'selected' : '' %>>Baixa</option>
-      <option value="medium" <%= task.priority === 'medium' ? 'selected' : '' %>>Média</option>
-      <option value="high" <%= task.priority === 'high' ? 'selected' : '' %>>Alta</option>
-    </select><br>
-
-    <label for="status">Status:</label>
-    <select id="status" name="status">
-      <option value="pending" <%= task.status === 'pending' ? 'selected' : '' %>>Pendente</option>
-      <option value="in_progress" <%= task.status === 'in_progress' ? 'selected' : '' %>>Em andamento</option>
-      <option value="completed" <%= task.status === 'completed' ? 'selected' : '' %>>Concluída</option>
-    </select><br>
-
-    <button type="submit">Salvar Alterações</button>
+    <div class="form-group">
+      <label for="title" class="form-label">Título</label>
+      <input type="text" id="title" name="title" class="form-control" value="<%= task.title %>" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="description" class="form-label">Descrição</label>
+      <textarea id="description" name="description" class="form-control" rows="3"><%= task.description %></textarea>
+    </div>
+    
+    <div class="form-group">
+      <label for="due_date" class="form-label">Data de Vencimento</label>
+      <input type="date" id="due_date" name="due_date" class="form-control" value="<%= task.due_date ? task.due_date.toISOString().substring(0, 10) : '' %>">
+    </div>
+    
+    <div class="form-group">
+      <label for="priority" class="form-label">Prioridade</label>
+      <select id="priority" name="priority" class="form-control">
+        <option value="low" <%= task.priority === 'low' ? 'selected' : '' %>>Baixa</option>
+        <option value="medium" <%= task.priority === 'medium' ? 'selected' : '' %>>Média</option>
+        <option value="high" <%= task.priority === 'high' ? 'selected' : '' %>>Alta</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="status" class="form-label">Status</label>
+      <select id="status" name="status" class="form-control">
+        <option value="pending" <%= task.status === 'pending' ? 'selected' : '' %>>Pendente</option>
+        <option value="completed" <%= task.status === 'completed' ? 'selected' : '' %>>Concluída</option>
+        <option value="canceled" <%= task.status === 'canceled' ? 'selected' : '' %>>Cancelada</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="category_id" class="form-label">Categoria</label>
+      <select id="category_id" name="category_id" class="form-control" required>
+        <option value="">Selecione uma categoria</option>
+        <% categories.forEach(category => { %>
+          <option value="<%= category.id %>" <%= selectedCategoryId === category.id ? 'selected' : '' %>><%= category.name %></option>
+        <% }); %>
+      </select>
+    </div>
+    
+    <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+      <a href="/tasks" class="btn btn-danger" style="width: auto;">Cancelar</a>
+      <button type="submit" class="btn btn-success">Salvar Alterações</button>
+    </div>
   </form>
+</div>
 
-  <br>
-  <a href="/tasks">Voltar para Tarefas</a>
-</body>
-</html>
+<%- include('../partials/footer') %>

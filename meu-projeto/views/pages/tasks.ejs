@@ -1,91 +1,79 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <title>Gestão de Tarefas</title>
-  <style>
-    table { border-collapse: collapse; width: 100%; }
-    th, td { border: 1px solid #333; padding: 8px; text-align: left; }
-    form { margin: 0; }
-    input, select { margin: 2px 0; }
-  </style>
-</head>
-<body>
-  <h1>Lista de Tarefas</h1>
+<%- include('../partials/header', { active: 'tasks' }) %>
 
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>ID Usuário</th>
-        <th>Título</th>
-        <th>Descrição</th>
-        <th>Data de Vencimento</th>
-        <th>Prioridade</th>
-        <th>Status</th>
-        <th>Criado em</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
-    <tbody>
+<div class="card">
+  <div class="card-header">
+    <h2 class="card-title">Suas Tarefas</h2>
+    <a href="/tasks/new" class="btn btn-primary">
+      <i class="fas fa-plus"></i> Nova Tarefa
+    </a>
+  </div>
+  
+  <% if (tasks && tasks.length > 0) { %>
+    <div class="task-grid">
       <% tasks.forEach(task => { %>
-      <tr>
-        <td><%= task.id %></td>
-        <td><%= task.user_id %></td>
-        <td><%= task.title %></td>
-        <td><%= task.description %></td>
-        <td><%= task.due_date ? new Date(task.due_date).toISOString().split('T')[0] : '' %></td>
-        <td><%= task.priority %></td>
-        <td><%= task.status %></td>
-        <td><%= new Date(task.created_at).toLocaleString('pt-BR') %></td>
-        <td>
-          <!-- Formulário para editar a tarefa -->
-          <form action="/tasks/<%= task.id %>?_method=PUT" method="POST" style="display:inline-block; margin-bottom: 4px;">
-            <input name="title" placeholder="Título" value="<%= task.title %>" required />
-            <input name="description" placeholder="Descrição" value="<%= task.description %>" required />
-            <input type="date" name="due_date" value="<%= task.due_date ? new Date(task.due_date).toISOString().split('T')[0] : '' %>" />
-            <select name="priority" required>
-              <option value="low" <%= task.priority === 'low' ? 'selected' : '' %>>Baixa</option>
-              <option value="medium" <%= task.priority === 'medium' ? 'selected' : '' %>>Média</option>
-              <option value="high" <%= task.priority === 'high' ? 'selected' : '' %>>Alta</option>
-            </select>
-            <select name="status" required>
-              <option value="pending" <%= task.status === 'pending' ? 'selected' : '' %>>Pendente</option>
-              <option value="completed" <%= task.status === 'completed' ? 'selected' : '' %>>Concluída</option>
-              <option value="canceled" <%= task.status === 'canceled' ? 'selected' : '' %>>Cancelada</option>
-            </select>
-            <button type="submit">Editar</button>
-          </form>
-
-          <!-- Formulário para deletar a tarefa -->
-          <form action="/tasks/<%= task.id %>?_method=DELETE" method="POST" style="display:inline-block;">
-            <button type="submit" onclick="return confirm('Tem certeza que deseja deletar esta tarefa?');">Deletar</button>
-          </form>
-        </td>
-      </tr>
+        <div class="task-card" data-priority="<%= task.priority %>" data-status="<%= task.status %>">
+          <div class="task-header">
+            <h3 class="task-title"><%= task.title %></h3>
+            <div class="task-actions">
+              <a href="/tasks/edit/<%= task.id %>" class="btn-icon" title="Editar">
+                <i class="fas fa-edit"></i>
+              </a>
+              <form action="/tasks/<%= task.id %>?_method=DELETE" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir esta tarefa?');" style="display: inline;">
+                <button type="submit" class="btn-icon" title="Excluir">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+          
+          <div class="task-content">
+            <p class="task-description"><%= task.description || 'Sem descrição' %></p>
+          </div>
+          
+          <div class="task-footer">
+            <div class="task-meta">
+              <div class="task-priority">
+                <% if (task.priority === 'high') { %>
+                  <span class="badge badge-danger">Alta</span>
+                <% } else if (task.priority === 'medium') { %>
+                  <span class="badge badge-warning">Média</span>
+                <% } else { %>
+                  <span class="badge badge-primary">Baixa</span>
+                <% } %>
+              </div>
+              
+              <div class="task-status">
+                <% if (task.status === 'completed') { %>
+                  <span class="badge badge-success">Concluída</span>
+                <% } else if (task.status === 'canceled') { %>
+                  <span class="badge badge-danger">Cancelada</span>
+                <% } else { %>
+                  <span class="badge badge-warning">Pendente</span>
+                <% } %>
+              </div>
+            </div>
+            
+            <div class="task-date">
+              <i class="far fa-calendar-alt"></i>
+              <%= task.due_date ? new Date(task.due_date).toLocaleDateString() : 'Sem prazo' %>
+            </div>
+            
+            <% if (task.status !== 'completed') { %>
+              <form action="/tasks/<%= task.id %>/complete?_method=PUT" method="POST" class="complete-form">
+                <button type="submit" class="btn btn-success btn-sm">
+                  <i class="fas fa-check"></i> Concluir
+                </button>
+              </form>
+            <% } %>
+          </div>
+        </div>
       <% }); %>
-    </tbody>
-  </table>
+    </div>
+  <% } else { %>
+    <div class="alert alert-info">
+      <p>Você ainda não tem tarefas. <a href="/tasks/new">Criar uma nova tarefa</a></p>
+    </div>
+  <% } %>
+</div>
 
-  <hr />
-
-  <h2>Criar Nova Tarefa</h2>
-  <form action="/tasks" method="POST">
-    <input name="user_id" placeholder="ID do Usuário" required />
-    <input name="title" placeholder="Título" required />
-    <input name="description" placeholder="Descrição" required />
-    <input type="date" name="due_date" />
-    <select name="priority" required>
-      <option value="low">Baixa</option>
-      <option value="medium" selected>Média</option>
-      <option value="high">Alta</option>
-    </select>
-    <select name="status" required>
-      <option value="pending" selected>Pendente</option>
-      <option value="completed">Concluída</option>
-      <option value="canceled">Cancelada</option>
-    </select>
-    <button type="submit">Criar</button>
-  </form>
-</body>
 </html>

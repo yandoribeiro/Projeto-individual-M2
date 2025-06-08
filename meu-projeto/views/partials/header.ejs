@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciador de Tarefas</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="<%= locals.bodyClass || '' %>">
+  <header class="header">
+    <div class="container header-content">
+      <a href="/" class="logo">
+        <i class="fas fa-check-circle"></i>
+        Gerenciador de Tarefas
+      </a>
+      
+      <% if (locals.user) { %>
+        <div class="user-nav">
+          <div class="user-info">
+            <div class="user-avatar">
+              <%= user.username.charAt(0).toUpperCase() %>
+            </div>
+            <span><%= user.username %></span>
+          </div>
+          <a href="/logout" class="btn btn-danger">
+            <i class="fas fa-sign-out-alt"></i> Sair
+          </a>
+        </div>
+      <% } %>
+    </div>
+  </header>
+  
+  <div class="container main-content">
+    <% if (locals.user) { %>
+      <div class="nav-tabs">
+        <a href="/" class="nav-tab <%= locals.active === 'home' ? 'active' : '' %>">
+          <i class="fas fa-home"></i> Início
+        </a>
+        <a href="/tasks" class="nav-tab <%= locals.active === 'tasks' ? 'active' : '' %>">
+          <i class="fas fa-tasks"></i> Tarefas
+        </a>
+        <a href="/categories" class="nav-tab <%= locals.active === 'categories' ? 'active' : '' %>">
+          <i class="fas fa-tags"></i> Categorias
+        </a>
+      </div>
+    <% } %>
+

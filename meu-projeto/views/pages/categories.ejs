@@ -1,43 +1,84 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Lista de Categorias</title>
-</head>
-<body>
-  <h1>Lista de Categorias</h1>
+<%- include('../partials/header', { active: 'categories' }) %>
 
-  <a href="/categories/new">Criar nova categoria</a>
-
-  <ul>
+<div class="card">
+  <div class="card-header">
+    <h2 class="card-title">Suas Categorias</h2>
+    <a href="/categories/new" class="btn btn-primary">
+      <i class="fas fa-plus"></i>
+      Criar nova categoria
+    </a>
+  </div>
+  <div class="card-body">
     <% if (categories.length === 0) { %>
-      <li>Nenhuma categoria encontrada.</li>
+      <p class="text-center">Nenhuma categoria encontrada.</p>
     <% } else { %>
-      <% categories.forEach(category => { %>
-        <li>
-          <strong><%= category.name %></strong>
-          - <a href="/categories/edit/<%= category.id %>">Editar</a>
-          <form action="/api/categories/<%= category.id %>?_method=DELETE" method="POST" style="display:inline;">
-            <button type="submit">Excluir</button>
-          </form>
-
-          <% if (category.tasks.length > 0) { %>
-            <ul>
-              <% category.tasks.forEach(task => { %>
-                <li>
-                  <%= task.title %>
-                  - <a href="/tasks/edit/<%= task.id %>">Editar tarefa</a>
-                </li>
-              <% }) %>
-            </ul>
-          <% } else { %>
-            <p><em>Nenhuma tarefa nesta categoria.</em></p>
-          <% } %>
-        </li>
-      <% }) %>
+      <div class="categories-list">
+        <% categories.forEach(category => { %>
+          <div class="category-card">
+            <div class="category-header" style="background-color: <%= category.color || '#4361ee' %>;">
+              <h3 class="category-name">
+                <% if (category.color) { %>
+                  <span class="category-color" style="background-color: <%= category.color %>;"></span>
+                <% } %>
+                <%= category.name %>
+              </h3>
+              <div class="category-actions">
+                <a href="/categories/edit/<%= category.id %>" class="btn btn-sm btn-secondary">
+                  <i class="fas fa-edit"></i>
+                  Editar
+                </a>
+                <form action="/categories/<%= category.id %>?_method=DELETE" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza que deseja excluir esta categoria? Todas as tarefas associadas serão desvinculadas.');">
+                  <button type="submit" class="btn btn-sm btn-danger">
+                    <i class="fas fa-trash"></i>
+                    Excluir
+                  </button>
+                </form>
+              </div>
+            </div>
+            
+            <% if (category.tasks && category.tasks.length > 0) { %>
+              <div class="category-tasks">
+                <% category.tasks.forEach(task => { %>
+                  <div class="task-item" data-status="<%= task.status %>" data-priority="<%= task.priority %>">
+                    <div class="task-item-content">
+                      <span class="task-item-title"><%= task.title %></span>
+                      <% if (task.status === 'completed') { %>
+                        <span class="badge badge-success">Concluída</span>
+                      <% } else if (task.status === 'canceled') { %>
+                        <span class="badge badge-danger">Cancelada</span>
+                      <% } else { %>
+                        <span class="badge badge-warning">Pendente</span>
+                      <% } %>
+                    </div>
+                    <div class="task-item-actions">
+                      <a href="/tasks/edit/<%= task.id %>" class="btn-icon" title="Editar tarefa">
+                        <i class="fas fa-edit"></i>
+                      </a>
+                      <% if (task.status !== 'completed') { %>
+                        <form action="/tasks/<%= task.id %>/complete?_method=PUT" method="POST" class="d-inline">
+                          <button type="submit" class="btn-icon" title="Concluir tarefa">
+                            <i class="fas fa-check"></i>
+                          </button>
+                        </form>
+                      <% } %>
+                    </div>
+                  </div>
+                <% }) %>
+              </div>
+            <% } else { %>
+              <p class="no-tasks">Nenhuma tarefa nesta categoria.</p>
+            <% } %>
+            
+            <div class="category-footer">
+              <a href="/tasks/new?category_id=<%= category.id %>" class="btn btn-sm btn-primary">
+                <i class="fas fa-plus"></i> Adicionar tarefa
+              </a>
+            </div>
+          </div>
+        <% }) %>
+      </div>
     <% } %>
-  </ul>
+  </div>
+</div>
 
-  <br>
-  <a href="/">Voltar para o início</a>
-</body>
-</html>
+<%- include('../partials/footer') %>

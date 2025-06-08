@@ -1,76 +1,138 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <title>Gerenciador de Tarefas</title>
-</head>
-<body>
-  <h1>Gerenciador de Tarefas</h1>
+<%- include('../partials/header', { active: 'home' }) %>
 
-  <form id="taskForm">
-    <input type="number" id="user_id" placeholder="User ID" required />
-    <input type="text" id="title" placeholder="Título da tarefa" required />
-    <textarea id="description" placeholder="Descrição"></textarea>
-    <input type="datetime-local" id="due_date" />
-    <select id="priority">
-      <option value="low">Baixa</option>
-      <option value="medium" selected>Média</option>
-      <option value="high">Alta</option>
-    </select>
-    <select id="status">
-      <option value="pending" selected>Pendente</option>
-      <option value="completed">Concluída</option>
-      <option value="canceled">Cancelada</option>
-    </select>
-    <button type="submit">Criar Tarefa</button>
-  </form>
+<div class="card">
+  <div class="card-header">
+    <h2 class="card-title">Bem-vindo ao seu Gerenciador de Tarefas</h2>
+  </div>
+  <p>Organize suas tarefas e categorias em um só lugar.</p>
+  
+  <!-- Adicionar resumo de estatísticas -->
+  <div class="dashboard-summary">
+    <div class="summary-card">
+      <div class="summary-number"><%= stats.totalTasks %></div>
+      <div class="summary-label">Total de Tarefas</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-number"><%= stats.completedTasks %></div>
+      <div class="summary-label">Tarefas Concluídas</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-number"><%= stats.pendingTasks %></div>
+      <div class="summary-label">Tarefas Pendentes</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-number"><%= stats.totalCategories %></div>
+      <div class="summary-label">Categorias</div>
+    </div>
+  </div>
+</div>
 
-  <h2>Tarefas</h2>
-  <ul id="tasksList"></ul>
+<div class="card">
+  <div class="card-header">
+    <h2 class="card-title">Suas Tarefas Recentes</h2>
+    <a href="/tasks" class="btn btn-primary">
+      <i class="fas fa-list"></i> Ver Todas as Tarefas
+    </a>
+  </div>
+  
+  <% if (tasks && tasks.length > 0) { %>
+    <div class="task-grid">
+      <% tasks.slice(0, 6).forEach(task => { %>
+        <div class="task-card" data-priority="<%= task.priority %>" data-status="<%= task.status %>" data-id="<%= task.id %>">
+          <div class="task-header">
+            <h3 class="task-title"><%= task.title %></h3>
+            <!-- Removido botão de edição -->
+          </div>
+          
+          <div class="task-content">
+            <p class="task-description"><%= task.description || 'Sem descrição' %></p>
+          </div>
+          
+          <div class="task-footer">
+            <div class="task-meta">
+              <div class="task-priority">
+                <% if (task.priority === 'high') { %>
+                  <span class="badge badge-danger">Alta</span>
+                <% } else if (task.priority === 'medium') { %>
+                  <span class="badge badge-warning">Média</span>
+                <% } else { %>
+                  <span class="badge badge-primary">Baixa</span>
+                <% } %>
+              </div>
+              
+              <div class="task-status">
+                <% if (task.status === 'completed') { %>
+                  <span class="badge badge-success">Concluída</span>
+                <% } else if (task.status === 'canceled') { %>
+                  <span class="badge badge-danger">Cancelada</span>
+                <% } else { %>
+                  <span class="badge badge-warning">Pendente</span>
+                <% } %>
+              </div>
+            </div>
+            
+            <div class="task-date">
+              <i class="far fa-calendar-alt"></i>
+              <%= task.due_date ? new Date(task.due_date).toLocaleDateString() : 'Sem prazo' %>
+            </div>
+            
+            <!-- Removido botão de concluir -->
+          </div>
+        </div>
+      <% }); %>
+    </div>
+    
+    <% if (tasks.length > 6) { %>
+      <div style="text-align: center; margin-top: 1.5rem;">
+        <a href="/tasks" class="btn btn-primary">Ver todas as <%= tasks.length %> tarefas</a>
+      </div>
+    <% } %>
+  <% } else { %>
+    <div class="alert alert-info">
+      <p>Você ainda não tem tarefas. <a href="/tasks/new">Criar uma nova tarefa</a></p>
+    </div>
+  <% } %>
+</div>
 
-  <script>
-    const taskForm = document.getElementById('taskForm');
-    const tasksList = document.getElementById('tasksList');
+<div class="card">
+  <div class="card-header">
+    <h2 class="card-title">Suas Categorias</h2>
+    <a href="/categories" class="btn btn-primary">
+      <i class="fas fa-tags"></i> Ver Todas as Categorias
+    </a>
+  </div>
+  
+  <% if (categories && categories.length > 0) { %>
+    <div style="display: flex; flex-wrap: wrap; gap: 1rem; padding: 1rem;">
+      <% categories.forEach(category => { %>
+        <div class="category-tag" style="background-color: <%= category.color ? category.color + '20' : '#e3f2fd' %>; border-left: 4px solid <%= category.color || '#4361ee' %>;">
+          <i class="fas fa-tag" style="margin-right: 0.5rem; color: <%= category.color || 'var(--primary-color)' %>;"></i>
+          <%= category.name %>
+        </div>
+      <% }); %>
+    </div>
+    <div style="text-align: center; margin-top: 1rem;">
+      <a href="/categories" class="btn btn-primary">Gerenciar categorias</a>
+    </div>
+  <% } else { %>
+    <div class="alert alert-info">
+      <p>Você ainda não tem categorias. <a href="/categories/new">Criar uma nova categoria</a></p>
+    </div>
+  <% } %>
+</div>
 
-    // Função para carregar tarefas
-    async function loadTasks() {
-      const res = await fetch('/api/tasks');
-      const tasks = await res.json();
-      tasksList.innerHTML = '';
-      tasks.forEach(task => {
-        const li = document.createElement('li');
-        li.textContent = `${task.id}: ${task.title} [${task.status}] - Prioridade: ${task.priority}`;
-        tasksList.appendChild(li);
-      });
-    }
-
-    // Enviar formulário para criar tarefa
-    taskForm.addEventListener('submit', async e => {
-      e.preventDefault();
-      const data = {
-        user_id: Number(document.getElementById('user_id').value),
-        title: document.getElementById('title').value,
-        description: document.getElementById('description').value,
-        due_date: document.getElementById('due_date').value,
-        priority: document.getElementById('priority').value,
-        status: document.getElementById('status').value
-      };
-      const res = await fetch('/api/tasks', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      if (res.ok) {
-        alert('Tarefa criada!');
-        taskForm.reset();
-        loadTasks();
-      } else {
-        const error = await res.json();
-        alert('Erro: ' + error.error);
-      }
+<script>
+  // Tornar os cards de tarefas clicáveis
+  document.querySelectorAll('.home-dashboard .task-card').forEach(card => {
+    const taskId = card.getAttribute('data-id');
+    card.addEventListener('click', function(e) {
+      // Não redirecionar se o clique foi em um botão ou link
+      if (e.target.closest('a, button, form')) return;
+      
+      // Redirecionar para a página de detalhes da tarefa
+      window.location.href = `/tasks/edit/${taskId}`;
     });
+  });
+</script>
 
-    loadTasks(); // Carrega tarefas na inicialização
-  </script>
-</body>
-</html>
+<%- include('../partials/footer') %>

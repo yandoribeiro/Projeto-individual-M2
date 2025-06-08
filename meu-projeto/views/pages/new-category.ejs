@@ -1,23 +1,80 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Criar Nova Categoria</title>
-</head>
-<body>
-  <h1>Criar Nova Categoria</h1>
+<%- include('../partials/header', { active: 'categories' }) %>
 
+<div class="card">
+  <div class="card-header">
+    <h2 class="card-title">Criar Nova Categoria</h2>
+  </div>
+  
   <form action="/categories" method="POST">
-    <label for="name">Nome da categoria:</label>
-    <input type="text" id="name" name="name" required>
-
-    <!-- user_id fixo e oculto -->
-    <input type="hidden" name="user_id" value="1">
-
-    <button type="submit">Criar</button>
+    <div class="form-group">
+      <label for="name" class="form-label">Nome da Categoria</label>
+      <input type="text" id="name" name="name" class="form-control" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="color" class="form-label">Cor (opcional)</label>
+      <input type="color" id="color" name="color" class="form-control" value="#4361ee">
+      <small class="form-text text-muted">Escolha uma cor para identificar visualmente sua categoria.</small>
+    </div>
+    
+    <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+      <a href="/categories" class="btn btn-danger" style="width: auto;">Cancelar</a>
+      <button type="submit" class="btn btn-success">Criar Categoria</button>
+    </div>
   </form>
+</div>
 
-  <br>
-  <a href="/categories">Voltar para lista</a>
-</body>
-</html>
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Dicas para Categorias</h3>
+  </div>
+  <div class="card-body">
+    <p>Categorias ajudam a organizar suas tarefas de forma eficiente. Aqui estão algumas sugestões:</p>
+    <ul>
+      <li>Use categorias como "Trabalho", "Pessoal", "Saúde", "Finanças", etc.</li>
+      <li>Crie categorias para projetos específicos</li>
+      <li>Mantenha o número de categorias gerenciável (entre 5-10)</li>
+      <li>Use cores diferentes para identificar visualmente cada categoria</li>
+    </ul>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>
+
+<script>
+  // Prévia em tempo real da cor selecionada
+  const colorInput = document.getElementById('color');
+  const nameInput = document.getElementById('name');
+  const previewElement = document.createElement('div');
+  
+  previewElement.className = 'category-preview';
+  previewElement.innerHTML = `
+    <div class="preview-label">Prévia:</div>
+    <div class="category-tag" id="preview-tag">
+      <i class="fas fa-tag"></i>
+      <span id="preview-name">Nova Categoria</span>
+    </div>
+  `;
+  
+  // Inserir a prévia após o campo de cor
+  colorInput.parentNode.appendChild(previewElement);
+  
+  // Atualizar a prévia quando a cor mudar
+  colorInput.addEventListener('input', updatePreview);
+  nameInput.addEventListener('input', updatePreview);
+  
+  // Inicializar a prévia
+  updatePreview();
+  
+  function updatePreview() {
+    const color = colorInput.value;
+    const name = nameInput.value || 'Nova Categoria';
+    const previewTag = document.getElementById('preview-tag');
+    const previewName = document.getElementById('preview-name');
+    
+    previewTag.style.backgroundColor = color + '20'; // Cor com 20% de opacidade
+    previewTag.style.borderLeft = `4px solid ${color}`;
+    document.querySelector('#preview-tag i').style.color = color;
+    previewName.textContent = name;
+  }
+</script>
