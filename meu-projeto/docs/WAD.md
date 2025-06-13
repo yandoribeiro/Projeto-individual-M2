@@ -1,6 +1,6 @@
 # Web Application Document - Projeto Individual - Módulo 2 - Inteli
 
-## Nome do Projeto
+## Task +
 
 #### Yan de Oliveira Ribeiro
 
@@ -87,7 +87,7 @@ Interface intuitiva que melhora a visualização de tarefas.
 
 ## <a name="c3"></a>3. Projeto da Aplicação Web
 
-### 3.1. Modelagem do banco de dados  (Semana 3)
+### 3.1. Modelagem do banco de dados
 
 #### Modelo Relacional:
 
@@ -182,12 +182,12 @@ Esse model implementa a relação muitos-para-muitos entre tarefas e categorias.
 - created_at - data de criação da relação
 
 
-### 3.2. Arquitetura (Semana 5)
+### 3.2. Arquitetura
 O diagrama de arquitetura abaixo mostra como os dados fluem pelo sistema, tornando mais fácil a compreensão da lógica por trás dele.
 ![image](https://github.com/user-attachments/assets/b28c45f6-1e86-45e3-b7f4-341703d925c8)
 
 
-### 3.3. Wireframes (Semana 03)
+### 3.3. Wireframes
 
 ![Wireframe-Home](https://github.com/user-attachments/assets/6f26ae68-403c-4176-9b8b-e29de3c9fe39)
 
@@ -207,12 +207,12 @@ Esse é o wireframe da aba categorias, que foi baseada na US01 para ser desenvol
 
 *Posicione aqui algumas imagens demonstrativas de seu protótipo de alta fidelidade e o link para acesso ao protótipo completo (mantenha o link sempre público para visualização).*
 
-### 3.6. WebAPI e endpoints (Semana 05)
+### 3.6. WebAPI e endpoints
 
 Segue o link para um documento contendo a explicação dos endpoints relacionados ao projeto:
 https://docs.google.com/document/d/1Qh0XPUv6BALtVt9tQLXQG64ORV6hQG3RD-lf3Uwdweo/edit?usp=sharing
 
-### 3.7 Interface e Navegação (Semana 07)
+### 3.7 Interface e Navegação
 
 Para desenvolver o frontend do projeto, foram utilizados arquivos .ejs e .css para estilizar o sistema e permitir sua interação com o usuário. Ao final do desenvolvimento, a aplicação contém 4 páginas principais:
 
@@ -235,19 +235,25 @@ Nele o usuário deve criar o nome da categoria e adicionar uma cor a ela, de mod
 
 ---
 
-## <a name="c4"></a>4. Desenvolvimento da Aplicação Web (Semana 8)
+## <a name="c4"></a>4. Desenvolvimento da Aplicação Web
 
 ### 4.1 Demonstração do Sistema Web (Semana 8)
 
 *VIDEO: Insira o link do vídeo demonstrativo nesta seção*
 *Descreva e ilustre aqui o desenvolvimento do sistema web completo, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar.*
 
-### 4.2 Conclusões e Trabalhos Futuros (Semana 8)
+### 4.2 Conclusões e Trabalhos Futuros
 
-*Indique pontos fortes e pontos a melhorar de maneira geral.*
-*Relacione também quaisquer outras ideias que você tenha para melhorias futuras.*
+O desenvolvimento do sistema Task+ permitiu aplicar, de forma prática, diversos conceitos aprendidos durante o módulo, como modelagem de banco de dados relacional, arquitetura MVC, integração entre frontend e backend e uso de rotas e endpoints. O projeto cumpriu seu objetivo principal: oferecer uma ferramenta simples e funcional para organização de tarefas, atendendo às necessidades identificadas nas user stories e validando as dores da persona definida.
+#### Trabalhos Futuros
 
+- Sistema de login com autenticação segura: Implementação de autenticação com senha criptografada e sessões protegidas.
 
+- Filtro e ordenação de tarefas: Permitir que o usuário filtre tarefas por data, prioridade ou categoria.
+
+- Notificações e lembretes: Integração com e-mail ou sistema de alertas para lembrar o usuário de prazos importantes.
+
+- Dashboard analítico: Expansão do gráfico inicial para oferecer estatísticas mais detalhadas sobre produtividade, tempo médio para conclusão e categorias mais utilizadas.
 
 ## <a name="c5"></a>5. Referências
 
