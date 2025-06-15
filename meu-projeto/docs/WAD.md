@@ -10,7 +10,6 @@
 2. [Visão Geral da Aplicação Web](#c2)  
 3. [Projeto Técnico da Aplicação Web](#c3)  
 4. [Desenvolvimento da Aplicação Web](#c4)  
-5. [Referências](#c5)  
 
 <br>
 
@@ -237,14 +236,52 @@ Nele o usuário deve criar o nome da categoria e adicionar uma cor a ela, de mod
 
 ## <a name="c4"></a>4. Desenvolvimento da Aplicação Web
 
-### 4.1 Demonstração do Sistema Web (Semana 8)
+### 4.1 Demonstração do Sistema Web
 
-*VIDEO: Insira o link do vídeo demonstrativo nesta seção*
-*Descreva e ilustre aqui o desenvolvimento do sistema web completo, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar.*
+#### Link do vídeo demonstrativo do sistema: https://youtu.be/2XadOic2oDU
+
+O vídeo ilustra a experiência completa do usuário na aplicação, incluindo:
+
+- Criação da conta;
+- Gerenciamento de categorias e tarefas (criação, edição, visualização e personalização);
+- Conclusão de tarefas.
+
+#### Arquitetura e tecnologias utilizadas
+
+O sistema foi desenvolvido seguindo o padrão MVC (Model-View-Controller), que organiza o projeto em três camadas:
+
+##### 1. Models:
+- Responsáveis pela lógica de dados e comunicação com o banco de dados.
+
+##### 2. Controllers: 
+- Processam requisições do usuário e atuam como intermediários entre Models e Views;
+- Recebem ações da interface, garantindo interatividade e acesso às funcionalidades do sistema.
+
+##### 3. Views:
+- Interface do usuário, garante interatividade e acesso às funcionalidades do sistema.
+    
+#### Banco de Dados:
+- O banco de dados criado no supabase é responável por armazenar todos os dados do sistema, como usuários, tarefas e categorias.
+
+#### Requisições Assíncronas:
+- Realizam as requisições do sistema;
+- Foram utilizadas funções assíncronas (em vez de fetch) para garantir eficiência na execução paralela de tarefas.
+
+#### Desafios e soluções
+
+##### 1. Falta de Conhecimento técnico inicial:
+- Superado por meio de pesquisas em materiais do professor e tutoriais especializados no YouTube.
+
+##### 2. Dificuldades no Frontend:
+- A implementação do design original mostrou-se complexa, resultando em adaptações.
+- A versão final, embora diferente do planejado, manteve usabilidade e estética adequadas.
 
 ### 4.2 Conclusões e Trabalhos Futuros
 
+#### Conclusão
+
 O desenvolvimento do sistema Task+ permitiu aplicar, de forma prática, diversos conceitos aprendidos durante o módulo, como modelagem de banco de dados relacional, arquitetura MVC, integração entre frontend e backend e uso de rotas e endpoints. O projeto cumpriu seu objetivo principal: oferecer uma ferramenta simples e funcional para organização de tarefas, atendendo às necessidades identificadas nas user stories e validando as dores da persona definida.
+
 #### Trabalhos Futuros
 
 - Sistema de login com autenticação segura: Implementação de autenticação com senha criptografada e sessões protegidas.
@@ -255,9 +292,6 @@ O desenvolvimento do sistema Task+ permitiu aplicar, de forma prática, diversos
 
 - Dashboard analítico: Expansão do gráfico inicial para oferecer estatísticas mais detalhadas sobre produtividade, tempo médio para conclusão e categorias mais utilizadas.
 
-## <a name="c5"></a>5. Referências
-
-_Incluir as principais referências de seu projeto, para que seu parceiro possa consultar caso ele se interessar em aprofundar. Um exemplo de referência de livro e de site:_<br>
 
 ---
 ---
