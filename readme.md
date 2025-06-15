@@ -1,4 +1,4 @@
-<h1>📋 Gerenciador de Tarefas</h1>
+<h1>📋 Task +</h1>
 
   <p>O projeto consiste em um sistema de gerenciamento de tarefas desenvolvido com JavaScript no frontend, Node.js no backend e banco de dados PostgreSQL via Supabase.</p>
 
@@ -7,7 +7,7 @@
     <li>✅ Criar, consultar, atualizar e deletar tarefas</li>
     <li>🕒 Marcar tarefas como concluídas ou pendentes</li>
     <li>🔍 Filtrar tarefas por categorias</li>
-    <li>🔒 Acesso com e-mail único</li>
+    <li>🔒 Acesso com username e senha</li>
    
   </ul>
 
@@ -81,14 +81,9 @@ gerenciador-de-tarefas/
   ``` 
 5. **Inicie o servidor: Execute o comando abaixo para iniciar o servidor:**
   ```bash
-  npm start
+  node server.js
   ```
 6.**Acesse a aplicação: Abra o navegador e acesse:**
   ```bash
   http://localhost:3000
   ``` 
-
-7.**Testes (opcional): Para rodar os testes, execute:**
-  ```bash
-  npm test
-  ```
